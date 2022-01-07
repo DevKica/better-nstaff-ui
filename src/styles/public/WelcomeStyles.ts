@@ -3,8 +3,6 @@ import { makeStyles } from "@material-ui/core";
 const welcomeStyles = makeStyles(theme => ({
   container: {
     textAlign: "center",
-    // display: "flex",
-    flexDirection: "column",
     margin: "20px auto",
     width: "fit-content",
     padding: theme.spacing(3),

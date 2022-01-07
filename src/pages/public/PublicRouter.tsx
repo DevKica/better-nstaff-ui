@@ -2,12 +2,14 @@ import { Navigate, Route, Routes } from "react-router";
 import EasterEgg from "./EasterEgg";
 import WelcomePage from "./WelcomePage";
 import LoginPage from "./LoginPage";
+import SignUpPage from "./SignUpPage";
 
 const PublicMainPage = () => {
   return (
     <Routes>
       <Route path="/welcome" element={<WelcomePage />} />
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/signUp" element={<SignUpPage />} />
       <Route path="/easterEgg" element={<EasterEgg />} />
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>

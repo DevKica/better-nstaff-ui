@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes, useLocation } from "react-router";
+import { Navigate, Route, Routes, useLocation, useNavigate } from "react-router";
 import MainNavBar from "./components/globals/MainNavBar";
 import Redirect from "./pages/utils/Redirect";
 import ErrorsRouter from "./pages/utils/errors/ErrorsRouter";
@@ -6,25 +6,72 @@ import PublicMainPage from "./pages/public/PublicRouter";
 import UserRouter from "./pages/user/UserRouter";
 import Footer from "./components/globals/Footer";
 import { AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { deepAuthActiveUser, getUserData } from "./api/user/authApi";
+import { CONFIRM_EMAIL } from "./helpers/errors/errorMessages";
+import { getUserDataLocalStorage } from "./helpers/localStorage";
+import { AUTH } from "./redux/actionTypes/auth";
+import { stateType } from "./redux/reducers/mainReducer";
 
 const App = () => {
   const location = useLocation();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [loaded, setIsLoaded] = useState(false);
+  const { isAuthenticated } = useSelector((state: stateType) => state.auth);
+  useEffect(() => {
+    (async () => {
+      if (isAuthenticated === null) {
+        try {
+          const authenticationResult = await deepAuthActiveUser();
+          const resActive = authenticationResult.data.status === 200;
+          if (resActive || authenticationResult.data.message[0] === CONFIRM_EMAIL.message[0]) {
+            const user = getUserDataLocalStorage();
+            if (user) {
+              if (resActive) {
+                dispatch({ type: AUTH.SET_ACTIVE_USER, payload: JSON.parse(user) });
+              } else {
+                dispatch({ type: AUTH.SET_USER, payload: JSON.parse(user) });
+              }
+            } else {
+              const { data } = await getUserData();
+              if (resActive) {
+                dispatch({ type: AUTH.SET_ACTIVE_USER, payload: data.message });
+              } else {
+                dispatch({ type: AUTH.SET_USER, payload: data.message });
+              }
+            }
+          } else {
+            dispatch({ type: AUTH.REMOVE_USER });
+          }
+        } catch (e) {
+          dispatch({ type: AUTH.REMOVE_USER });
+          navigate("/errors/network");
+        }
+      }
+      setIsLoaded(true);
+    })();
+  }, [location, dispatch, isAuthenticated, navigate]);
   return (
     <div className="container">
       <MainNavBar />
       <main>
         <AnimatePresence exitBeforeEnter>
-          <Routes key={location.pathname} location={location}>
-            <Route path="/errors/*" element={<ErrorsRouter />} />
+          {loaded && (
+            <Routes key={location.pathname} location={location}>
+              <Route path="/errors/*" element={<ErrorsRouter />} />
 
-            <Route path="/" element={<Redirect />} />
+              <Route path="/" element={<Redirect />} />
 
-            <Route path="/public/*" element={<PublicMainPage />} />
+              <Route path="/public/*" element={<PublicMainPage />} />
 
-            <Route path="/user/*" element={<UserRouter />} />
+              <Route path="/user/*" element={<UserRouter />} />
 
-            <Route path="*" element={<Navigate to="/" />} />
-          </Routes>
+              <Route path="*" element={<Navigate to="/" />} />
+            </Routes>
+          )}
         </AnimatePresence>
       </main>
       <Footer />

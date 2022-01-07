@@ -12,6 +12,7 @@ const EasterEgg = () => {
             height: "70vh",
             width: "90vw",
             margin: "auto",
+            backgroundSize: "auto",
             backgroundRepeat: "none",
           }}
         />

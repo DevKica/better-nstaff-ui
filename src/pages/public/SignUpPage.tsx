@@ -4,15 +4,15 @@ import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
+import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import AnimatedPage from "./../utils/AnimatedPage";
-import GoogleAndFooter from "../../components/public/GoogleAndFooter";
-import { Box } from "@material-ui/core";
+import AnimatedPage from "../utils/AnimatedPage";
+import GoogleAndFooter from "./../../components/public/GoogleAndFooter";
 
-export default function LoginPage() {
-  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
+export default function SignUpPage() {
+  const handleSignUp = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
 
@@ -31,9 +31,9 @@ export default function LoginPage() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Sign up
           </Typography>
-          <Box component="form" onSubmit={handleLogin} sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={handleSignUp} noValidate sx={{ mt: 1 }}>
             <TextField
               size="small"
               margin="normal"
@@ -44,6 +44,8 @@ export default function LoginPage() {
               autoComplete="email"
               autoFocus
             />
+            <TextField size="small" margin="normal" required fullWidth label="Name" name="email" />
+            <TextField size="small" margin="normal" required fullWidth label="Surname" name="surname" />
             <TextField
               size="small"
               margin="normal"
@@ -53,12 +55,22 @@ export default function LoginPage() {
               label="Password"
               type="password"
             />
+            <TextField
+              margin="normal"
+              size="small"
+              required
+              fullWidth
+              name="repeatPassword"
+              label="Repeat Password"
+              type="password"
+              autoComplete="off"
+            />
             <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
             <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-              Sign in
+              Sign up
             </Button>
           </Box>
-          <GoogleAndFooter signIn={true} />
+          <GoogleAndFooter signIn={false} />
         </Box>
       </Container>
     </AnimatedPage>
