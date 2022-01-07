@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Navigate, Route, Routes, useLocation } from "react-router";
+import MainNavBar from "./components/globals/MainNavBar";
+import Redirect from "./pages/utils/Redirect";
+import ErrorsRouter from "./pages/utils/errors/ErrorsRouter";
+import PublicMainPage from "./pages/public/PublicRouter";
+import UserRouter from "./pages/user/UserRouter";
+import Footer from "./components/globals/Footer";
+import { AnimatePresence } from "framer-motion";
 
-function App() {
+const App = () => {
+  const location = useLocation();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <MainNavBar />
+      <main>
+        <AnimatePresence exitBeforeEnter>
+          <Routes key={location.pathname} location={location}>
+            <Route path="/errors/*" element={<ErrorsRouter />} />
+
+            <Route path="/" element={<Redirect />} />
+
+            <Route path="/public/*" element={<PublicMainPage />} />
+
+            <Route path="/user/*" element={<UserRouter />} />
+
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
+        </AnimatePresence>
+      </main>
+      <Footer />
     </div>
   );
-}
+};
 
 export default App;
