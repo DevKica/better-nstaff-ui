@@ -1,6 +1,5 @@
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
@@ -9,17 +8,32 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import AnimatedPage from "./../utils/AnimatedPage";
 import GoogleAndFooter from "../../components/public/GoogleAndFooter";
-import { Box } from "@material-ui/core";
+import { Box, Snackbar } from "@material-ui/core";
+import { Alert } from "@material-ui/lab";
+import ResMessage from "../../components/globals/ResMessage";
+import { useState } from "react";
+import { useForm } from "../../hooks/useForm";
+import { useNavigate } from "react-router";
+import { loginUser } from "../../api/user/authApi";
+import { setUserData } from "../../redux/actions/authActions";
 
 export default function LoginPage() {
-  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
+  const navigate = useNavigate();
+  const [resMessage, setResMessage] = useState<string[] | []>([]);
+  const [body, changeBody] = useForm({ email: "devKi1ca777@gmail.com", password: "pas1sword1" });
+
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const res = await loginUser(body);
+    if (!res) return;
+    if (res.data.status !== 200) return setResMessage(res.data.message);
+    setUserData(res.data.message);
+    navigate("/");
   };
 
   return (
     <AnimatedPage>
       <Container maxWidth="xs">
-        <CssBaseline />
         <Box
           sx={{
             display: "flex",
@@ -43,6 +57,8 @@ export default function LoginPage() {
               name="email"
               autoComplete="email"
               autoFocus
+              value={body.email}
+              onChange={changeBody}
             />
             <TextField
               size="small"
@@ -52,6 +68,9 @@ export default function LoginPage() {
               name="password"
               label="Password"
               type="password"
+              autoComplete="current-password"
+              value={body.password}
+              onChange={changeBody}
             />
             <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
             <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
@@ -59,6 +78,16 @@ export default function LoginPage() {
             </Button>
           </Box>
           <GoogleAndFooter signIn={true} />
+          <Snackbar
+            style={{ bottom: 70 }}
+            open={!!resMessage.length}
+            autoHideDuration={100000}
+            onClose={() => setResMessage([])}
+          >
+            <Alert onClose={() => setResMessage([])} severity="error">
+              <ResMessage messages={resMessage} />
+            </Alert>
+          </Snackbar>
         </Box>
       </Container>
     </AnimatedPage>

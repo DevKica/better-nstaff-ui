@@ -6,10 +6,10 @@ const RedirectPage = () => {
   const navigate = useNavigate();
   const { isAuthenticated, isActive } = getStoreUserAuth();
   useEffect(() => {
-    if (isActive) return navigate("/active/profile");
-    if (isAuthenticated) return navigate("/user/profile");
+    if (isActive) return navigate("/active/nstaff");
+    if (isAuthenticated) return navigate("/user/previewN");
     return navigate("/public/welcome");
   }, [isAuthenticated, navigate, isActive]);
-  return <div>loading</div>;
+  return <div></div>;
 };
 export default RedirectPage;

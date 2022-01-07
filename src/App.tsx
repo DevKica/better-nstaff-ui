@@ -13,6 +13,10 @@ import { CONFIRM_EMAIL } from "./helpers/errors/errorMessages";
 import { getUserDataLocalStorage } from "./helpers/localStorage";
 import { AUTH } from "./redux/actionTypes/auth";
 import { stateType } from "./redux/reducers/mainReducer";
+import { CssBaseline } from "@material-ui/core";
+import ActiveUserRouter from "./pages/active/ActiveUserRouter";
+import EmailConfirmationPage from "./pages/public/special/ConfirmEmailPage";
+import SetNewPasswordPage from "./pages/public/special/SetNewPasswordPage";
 
 const App = () => {
   const location = useLocation();
@@ -56,11 +60,15 @@ const App = () => {
   }, [location, dispatch, isAuthenticated, navigate]);
   return (
     <div className="container">
+      <CssBaseline />
       <MainNavBar />
       <main>
         <AnimatePresence exitBeforeEnter>
           {loaded && (
             <Routes key={location.pathname} location={location}>
+              <Route path="/special/emailConfirm/:token" element={<EmailConfirmationPage />} />
+              <Route path="/special/resetPassword/:token" element={<SetNewPasswordPage />} />
+
               <Route path="/errors/*" element={<ErrorsRouter />} />
 
               <Route path="/" element={<Redirect />} />
@@ -68,6 +76,8 @@ const App = () => {
               <Route path="/public/*" element={<PublicMainPage />} />
 
               <Route path="/user/*" element={<UserRouter />} />
+
+              <Route path="/active/*" element={<ActiveUserRouter />} />
 
               <Route path="*" element={<Navigate to="/" />} />
             </Routes>

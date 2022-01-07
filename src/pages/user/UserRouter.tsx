@@ -4,7 +4,7 @@ import { getStoreUserAuth } from "../../redux/actions/authActions";
 import ProfilePage from "./ProfilePage";
 const UserRouter = () => {
   const navigate = useNavigate();
-  const { isAuthenticated } = getStoreUserAuth();
+  const { isAuthenticated, isActive } = getStoreUserAuth();
   useEffect(() => {
     if (!isAuthenticated) return navigate("/");
   }, [isAuthenticated, navigate]);
@@ -12,6 +12,8 @@ const UserRouter = () => {
     <div>
       <Routes>
         <Route path="/profile" element={<ProfilePage />} />
+        {!isActive && <Route path="/previewN" element={<div>confirm email to join nstuff</div>} />}
+
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </div>
