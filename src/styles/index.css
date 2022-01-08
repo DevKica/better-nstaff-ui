@@ -23,7 +23,12 @@ a {
 }
 
 main {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   flex-grow: 1;
+  margin-top: 5px;
   margin: 30px 15px;
 }

@@ -1,25 +1,20 @@
 import AnimatedPage from "../utils/AnimatedPage";
 import Avatar from "@mui/material/Avatar";
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
-import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
-import { CardActionArea } from "@material-ui/core";
-import settingsStyles from "../../styles/user/settingsStyles";
+import Container from "@mui/material/Container";
+import CardContent from "@mui/material/CardContent";
 import { useEffect, useState } from "react";
-import GeneralInfoDialog from "../../components/user/settings/GeneralInfoDialog";
-import EmailDialog from "./../../components/user/settings/EmailDialog";
-import PasswordDialog from "./../../components/user/settings/PasswordDialog";
-import DeleteAccountDialog from "./../../components/user/settings/DeleteAccountDialog";
 import { getStoreUserAuth, setUserData } from "../../redux/actions/authActions";
 import { getUserPrivateInfo, getUserProfilePhoto } from "../../api/user/profileApi";
 import { userPrivateDataType } from "../../types/user";
+import Button from "@mui/material/Button";
+import ChangePhotoDialog from "./../../components/user/profile/ChangePhotoDialog";
 
 const ProfilePage = () => {
-  const [resMessage, setResMessage] = useState<string[] | []>([]);
   const [privateUser, setPrivateUser] = useState<userPrivateDataType | null>(null);
   const { isActive } = getStoreUserAuth();
+  const [edit, setEdit] = useState<boolean>(false);
 
   useEffect(() => {
     (async () => {
@@ -32,27 +27,24 @@ const ProfilePage = () => {
   return (
     <AnimatedPage>
       {privateUser && (
-        <>
-          <Grid
-            container
-            sx={{ mb: 3 }}
-            direction="column"
-            alignItems="center"
-            justifyContent="center"
-            style={{ textAlign: "center" }}
+        <Container maxWidth="sm">
+          <Card
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              boxShadow: "0px 4px 12px 2px rgba(66, 68, 90, 1)",
+            }}
           >
-            <Grid item>
+            <CardContent>
               <Avatar
-                sx={{ m: "auto", bgcolor: "secondary.main", width: 140, height: 140 }}
+                sx={{ mx: "auto", my: 2, bgcolor: "secondary.main", width: 140, height: 140 }}
                 src={getUserProfilePhoto("large", privateUser.profilePhotoPath)}
+                style={{ border: "0.2px black solid" }}
               />
-            </Grid>
-            <Grid item sx={{ my: 4 }}>
-              <Typography component="h1" variant="h3">
-                {privateUser.name} {privateUser.surname}
+              <Button onClick={() => setEdit(true)}>Change profile photo</Button>
+              <Typography component="h1" variant="h4" sx={{ my: 2 }}>
+                {privateUser.surname} {privateUser.name}
               </Typography>
-            </Grid>
-            <Grid>
               <Typography variant="h6">
                 email: {privateUser.email}{" "}
                 {isActive && (
@@ -61,16 +53,22 @@ const ProfilePage = () => {
                   </Typography>
                 )}
               </Typography>
-
               <Typography variant="h6" gutterBottom>
                 updated at: {privateUser.updatedAt.replace("T", " ").slice(0, 19)}
               </Typography>
               <Typography variant="h6" gutterBottom>
                 created at: {privateUser.createdAt.replace("T", " ").slice(0, 19)}
               </Typography>
-            </Grid>
-          </Grid>
-        </>
+            </CardContent>
+          </Card>
+          <ChangePhotoDialog
+            setPrivateUser={(data: any) =>
+              setPrivateUser({ ...data, updatedAt: privateUser.updatedAt, createdAt: privateUser.createdAt })
+            }
+            open={edit}
+            setOpen={setEdit}
+          />
+        </Container>
       )}
     </AnimatedPage>
   );

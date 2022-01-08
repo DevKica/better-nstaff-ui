@@ -44,7 +44,6 @@ const DeleteAccountDialog = (props: { open: boolean; setOpen: any }) => {
       <DialogTitle>Delete your account</DialogTitle>
       <DialogContent>
         <DialogContentText>To delete your account, enter your current password and click delete</DialogContentText>
-        <input style={{ display: "none" }} type="text" autoComplete="username" ng-hide="true"></input>
         <TextField
           required
           fullWidth

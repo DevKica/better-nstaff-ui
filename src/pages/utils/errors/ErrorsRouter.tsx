@@ -22,21 +22,12 @@ export const allErrorRoutes = [
 const ErrorsRouter = () => {
   return (
     <div>
-      <Grid
-        container
-        spacing={0}
-        direction="column"
-        alignItems="center"
-        justifyContent="center"
-        style={{ position: "absolute", top: "50%", transform: "translateY(-50%)" }}
-      >
-        <Routes>
-          {allErrorRoutes.map((e, index) => (
-            <Route key={index} path={e.path} element={<ErrorPage text={e.text} />} />
-          ))}
-          <Route path="*" element={<Navigate to="/" />} />
-        </Routes>
-      </Grid>
+      <Routes>
+        {allErrorRoutes.map((e, index) => (
+          <Route key={index} path={e.path} element={<ErrorPage text={e.text} />} />
+        ))}
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
     </div>
   );
 };
