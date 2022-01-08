@@ -31,6 +31,7 @@ const DeleteAccountDialog = (props: { open: boolean; setOpen: any }) => {
 
     if (res.data.status === 200) {
       setSeverity("success");
+      setResMessage(["Success"]);
       window.location.href = `/`;
     } else {
       setResMessage(res.data.message);

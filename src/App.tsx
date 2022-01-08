@@ -17,6 +17,7 @@ import { CssBaseline } from "@material-ui/core";
 import ActiveUserRouter from "./pages/active/ActiveUserRouter";
 import EmailConfirmationPage from "./pages/public/special/ConfirmEmailPage";
 import SetNewPasswordPage from "./pages/public/special/SetNewPasswordPage";
+import Container from "@mui/material/Container";
 
 const App = () => {
   const location = useLocation();
@@ -65,24 +66,26 @@ const App = () => {
         <>
           <MainNavBar />
           <main>
-            <AnimatePresence exitBeforeEnter>
-              <Routes key={location.pathname} location={location}>
-                <Route path="/special/confirmEmail/:token" element={<EmailConfirmationPage />} />
-                <Route path="/special/resetPassword/:token" element={<SetNewPasswordPage />} />
+            <Container maxWidth="lg" sx={{ p: 0 }}>
+              <AnimatePresence exitBeforeEnter>
+                <Routes key={location.pathname} location={location}>
+                  <Route path="/special/confirmEmail/:token" element={<EmailConfirmationPage />} />
+                  <Route path="/special/resetPassword/:token" element={<SetNewPasswordPage />} />
 
-                <Route path="/errors/*" element={<ErrorsRouter />} />
+                  <Route path="/errors/*" element={<ErrorsRouter />} />
 
-                <Route path="/" element={<Redirect />} />
+                  <Route path="/" element={<Redirect />} />
 
-                <Route path="/public/*" element={<PublicMainPage />} />
+                  <Route path="/public/*" element={<PublicMainPage />} />
 
-                <Route path="/user/*" element={<UserRouter />} />
+                  <Route path="/user/*" element={<UserRouter />} />
 
-                <Route path="/active/*" element={<ActiveUserRouter />} />
+                  <Route path="/active/*" element={<ActiveUserRouter />} />
 
-                <Route path="*" element={<Navigate to="/" />} />
-              </Routes>
-            </AnimatePresence>
+                  <Route path="*" element={<Navigate to="/" />} />
+                </Routes>
+              </AnimatePresence>
+            </Container>
           </main>
           <Footer />
         </>

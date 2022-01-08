@@ -9,9 +9,12 @@ const EasterEgg = () => {
         <CardMedia
           image={require("../../static/easterEgg/easterEgg.png")}
           style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%,-50%)",
             height: "70vh",
             width: "90vw",
-            margin: "auto",
             backgroundSize: "auto",
             backgroundRepeat: "none",
           }}
