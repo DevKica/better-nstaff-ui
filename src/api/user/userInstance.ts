@@ -1,39 +1,31 @@
 import axios, { AxiosResponse } from "axios";
 import { PROFILE_USER_URL } from "../../config/default";
-import { BAD_REQUEST, EXPIRED_LINK, FORBIDDEN, NOT_FOUND, SERVER_ERROR } from "./../../helpers/errors/errorMessages";
 import { AUTH_USER_URL } from "./../../config/default";
-import { errorMessageType } from "../../types/errorMessage";
+import { basicErrorRoutes } from "../../pages/utils/errors/ErrorsRouter";
+import { accessRoutes } from "./../../pages/utils/errors/ErrorsRouter";
 axios.defaults.withCredentials = true;
 
-export const helperErrorMessge = (resMsg: string, msg: errorMessageType) => {
-  return resMsg === msg.message[0];
+export const helperErrorMessge = (resMsg: string, msg: string) => {
+  return resMsg === msg;
 };
 
 export const checkBasicErrors = (resMsg: string) => {
-  if (helperErrorMessge(resMsg, SERVER_ERROR)) {
-    window.location.href = "/errors/serverError";
-    return null;
-  }
-  if (helperErrorMessge(resMsg, BAD_REQUEST)) {
-    window.location.href = "/errors/badRequest";
-    return null;
-  }
-  if (helperErrorMessge(resMsg, NOT_FOUND)) {
-    window.location.href = "/errors/notFound";
-    return null;
-  }
-  if (helperErrorMessge(resMsg, EXPIRED_LINK)) {
-    window.location.href = "/errors/expiredLink";
-    return null;
-  }
+  basicErrorRoutes.forEach(e => {
+    if (helperErrorMessge(resMsg, e.text)) {
+      window.location.href = `/errors${e.path}`;
+      return null;
+    }
+  });
   return true;
 };
 
 export const checkForbiddenError = (resMsg: string) => {
-  if (helperErrorMessge(resMsg, FORBIDDEN)) {
-    window.location.href = "/errors/forbidden";
-    return null;
-  }
+  accessRoutes.forEach(e => {
+    if (helperErrorMessge(resMsg, e.text)) {
+      window.location.href = `/errors${e.path}`;
+      return null;
+    }
+  });
   return true;
 };
 

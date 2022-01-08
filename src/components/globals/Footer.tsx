@@ -12,7 +12,7 @@ const Footer = () => {
         p: 1,
       }}
     >
-      Created by Paweł Kica
+      Created by Paweł Kica 2022
     </Box>
   );
 };
