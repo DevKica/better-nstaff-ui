@@ -100,7 +100,7 @@ const GoogleAndFooter = (props: { signIn: boolean }) => {
             </div>
           )}
         </Box>
-        <RouterLink to="/public/forgotPassword">
+        <RouterLink to="/special/forgotPassword">
           <Grid item xs={12}>
             <Typography style={{ color: "#1976d2" }}>Forgot password?</Typography>
           </Grid>

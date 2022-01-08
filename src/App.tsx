@@ -18,6 +18,7 @@ import ActiveUserRouter from "./pages/active/ActiveUserRouter";
 import EmailConfirmationPage from "./pages/public/special/ConfirmEmailPage";
 import SetNewPasswordPage from "./pages/public/special/SetNewPasswordPage";
 import Container from "@mui/material/Container";
+import ForgotPasswordPage from "./pages/public/special/ForgotPasswordPage";
 
 const App = () => {
   const location = useLocation();
@@ -71,6 +72,7 @@ const App = () => {
                 <Routes key={location.pathname} location={location}>
                   <Route path="/special/confirmEmail/:token" element={<EmailConfirmationPage />} />
                   <Route path="/special/resetPassword/:token" element={<SetNewPasswordPage />} />
+                  <Route path="/special/forgotPassword" element={<ForgotPasswordPage />} />
 
                   <Route path="/errors/*" element={<ErrorsRouter />} />
 

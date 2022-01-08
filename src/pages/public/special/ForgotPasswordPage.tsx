@@ -1,39 +1,30 @@
-import AnimatedPage from "../../utils/AnimatedPage";
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
-import { useEffect, useState } from "react";
-import { useForm } from "../../../hooks/useForm";
+import { useState } from "react";
 import { Container, Box, Typography, TextField } from "@material-ui/core";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import { useParams } from "react-router-dom";
-import { setNewPassword, verifyResetPasswordToken } from "../../../api/user/authApi";
+import AnimatedPage from "../../utils/AnimatedPage";
 import CustomSnackBar from "../../../components/globals/CustomSnackBar";
 import { AlertColor } from "@mui/material";
+import { useForm } from "../../../hooks/useForm";
+import { resetPassword } from "../../../api/user/authApi";
 
-const SetNewPasswordPage = () => {
-  const { token } = useParams();
+const ForgotPasswordPage = () => {
   const [resMessage, setResMessage] = useState<string[] | []>([]);
-  const [severity, setSeverity] = useState<AlertColor | undefined>("error");
+  const [severity, setSeverity] = useState<AlertColor | undefined>("success");
   const [open, setOpen] = useState<boolean>(false);
-
-  const [body, changeBody] = useForm({ password: "password2", repeatPassword: "password2" });
-  useEffect(() => {
-    (async () => {
-      const res = await verifyResetPasswordToken(token);
-      if (!res) return;
-    })();
-  }, [token]);
+  const [body, changeBody] = useForm({ email: "" });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const res = await setNewPassword(token, body);
+    const res = await resetPassword(body);
     if (!res) return;
     if (res.data.status !== 200) {
       setSeverity("error");
       setResMessage(res.data.message);
     } else {
       setSeverity("success");
-      setResMessage([`Success, you've created new password, now you can log in`]);
+      setResMessage([`Success, check your email`]);
     }
     setOpen(true);
   };
@@ -51,7 +42,7 @@ const SetNewPasswordPage = () => {
             <VpnKeyIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Create new password
+            Reset your password
           </Typography>
           <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
             <TextField
@@ -59,44 +50,21 @@ const SetNewPasswordPage = () => {
               margin="normal"
               required
               fullWidth
-              name="password"
-              label="Password"
-              type="password"
+              name="email"
+              label="Your email"
               autoComplete="off"
               value={body.password}
-              onChange={changeBody}
-            />
-            <TextField
-              size="small"
-              margin="normal"
-              required
-              fullWidth
-              name="repeatPassword"
-              label="Repeat Password"
-              type="password"
-              autoComplete="off"
-              value={body.repeatPassword}
               onChange={changeBody}
             />
             <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
               submit
             </Button>
           </Box>
-          <CustomSnackBar
-            openPopUp={open}
-            resMessage={resMessage}
-            setter={() => {
-              if (severity === "success") {
-                window.location.href = `/public/login`;
-              }
-              setOpen(false);
-            }}
-            severity={severity}
-          />
+          <CustomSnackBar openPopUp={open} resMessage={resMessage} setter={() => setOpen(false)} severity={severity} />
         </Box>
       </Container>
     </AnimatedPage>
   );
 };
 
-export default SetNewPasswordPage;
+export default ForgotPasswordPage;

@@ -12,12 +12,23 @@ import GeneralInfoDialog from "../../components/user/settings/GeneralInfoDialog"
 import EmailDialog from "./../../components/user/settings/EmailDialog";
 import PasswordDialog from "./../../components/user/settings/PasswordDialog";
 import DeleteAccountDialog from "./../../components/user/settings/DeleteAccountDialog";
+import { singleLogout, logoutFromAll } from "../../api/user/authApi";
 
 export type SettingsModalType = "general" | "email" | "password" | "deleteAccount" | "";
 
 const SettingsPage = () => {
   const styles = settingsStyles();
   const [selectedModal, setSelectedModal] = useState<SettingsModalType>("");
+
+  const handleLogoutSingle = async () => {
+    await singleLogout();
+    window.location.href = `/`;
+  };
+  const handleLogoutAll = async () => {
+    const res = await logoutFromAll();
+    if (!res) return;
+    window.location.href = `/`;
+  };
 
   return (
     <AnimatedPage>
@@ -52,14 +63,14 @@ const SettingsPage = () => {
               </Card>
             </CardActionArea>
           </Grid>
-          <Grid item sx={{ mb: 5 }}>
+          <Grid item sx={{ mb: 5 }} onClick={handleLogoutSingle}>
             <CardActionArea>
               <Card className={styles.item}>
                 <Typography variant="subtitle1">Logout</Typography>
               </Card>
             </CardActionArea>
           </Grid>
-          <Grid item sx={{ mb: 5 }}>
+          <Grid item sx={{ mb: 5 }} onClick={handleLogoutAll}>
             <CardActionArea>
               <Card className={styles.item}>
                 <Typography variant="subtitle1">Logout from all sessions</Typography>
