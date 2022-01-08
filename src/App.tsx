@@ -61,30 +61,32 @@ const App = () => {
   return (
     <div className="container">
       <CssBaseline />
-      <MainNavBar />
-      <main>
-        <AnimatePresence exitBeforeEnter>
-          {loaded && (
-            <Routes key={location.pathname} location={location}>
-              <Route path="/special/emailConfirm/:token" element={<EmailConfirmationPage />} />
-              <Route path="/special/resetPassword/:token" element={<SetNewPasswordPage />} />
+      {loaded && (
+        <>
+          <MainNavBar />
+          <main>
+            <AnimatePresence exitBeforeEnter>
+              <Routes key={location.pathname} location={location}>
+                <Route path="/special/confirmEmail/:token" element={<EmailConfirmationPage />} />
+                <Route path="/special/resetPassword/:token" element={<SetNewPasswordPage />} />
 
-              <Route path="/errors/*" element={<ErrorsRouter />} />
+                <Route path="/errors/*" element={<ErrorsRouter />} />
 
-              <Route path="/" element={<Redirect />} />
+                <Route path="/" element={<Redirect />} />
 
-              <Route path="/public/*" element={<PublicMainPage />} />
+                <Route path="/public/*" element={<PublicMainPage />} />
 
-              <Route path="/user/*" element={<UserRouter />} />
+                <Route path="/user/*" element={<UserRouter />} />
 
-              <Route path="/active/*" element={<ActiveUserRouter />} />
+                <Route path="/active/*" element={<ActiveUserRouter />} />
 
-              <Route path="*" element={<Navigate to="/" />} />
-            </Routes>
-          )}
-        </AnimatePresence>
-      </main>
-      <Footer />
+                <Route path="*" element={<Navigate to="/" />} />
+              </Routes>
+            </AnimatePresence>
+          </main>
+          <Footer />
+        </>
+      )}
     </div>
   );
 };
