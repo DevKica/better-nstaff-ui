@@ -45,9 +45,9 @@ const ProfilePage = () => {
               <Typography component="h1" variant="h4" sx={{ my: 2 }}>
                 {privateUser.surname} {privateUser.name}
               </Typography>
-              <Typography variant="h6">
+              <Typography variant="h6" gutterBottom>
                 email: {privateUser.email}{" "}
-                {isActive && (
+                {!isActive && (
                   <Typography component="div" variant="subtitle1" gutterBottom>
                     ( Please confirm it !!! )
                   </Typography>

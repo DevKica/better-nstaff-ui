@@ -34,7 +34,7 @@ const SettingsPage = () => {
     <AnimatedPage>
       <Container maxWidth="sm">
         <Grid container sx={{ mb: 3 }} direction="column" alignItems="center" justifyContent="center">
-          <Avatar sx={{ m: "auto", bgcolor: "secondary.main" }}>
+          <Avatar sx={{ mx: "auto", mb: 2, bgcolor: "secondary.main" }}>
             <AdminPanelSettingsIcon />
           </Avatar>
           <Typography component="h1" variant="h5">

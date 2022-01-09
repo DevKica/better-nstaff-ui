@@ -12,7 +12,7 @@ import { AlertColor } from "@mui/material";
 import { changeEmail } from "../../../api/user/authApi";
 import { getStoreUserAuth, setUserData } from "../../../redux/actions/authActions";
 
-const EmailDialog = (props: { open: boolean; setOpen: any }) => {
+const EmailDialog = ({ open, setOpen }: { open: boolean; setOpen: any }) => {
   const [resMessage, setResMessage] = useState<string[] | []>([]);
   const [severity, setSeverity] = useState<AlertColor | undefined>("success");
   const [openPopUp, setOpenPopUp] = useState<boolean>(false);
@@ -21,7 +21,7 @@ const EmailDialog = (props: { open: boolean; setOpen: any }) => {
 
   const closePopUp = () => {
     if (severity === "success") {
-      props.setOpen("");
+      setOpen("");
     }
     setOpenPopUp(false);
   };
@@ -43,7 +43,7 @@ const EmailDialog = (props: { open: boolean; setOpen: any }) => {
   };
 
   return (
-    <Dialog open={props.open} maxWidth="sm">
+    <Dialog open={open} maxWidth="sm">
       <DialogTitle>Change your email</DialogTitle>
       <DialogContent>
         <DialogContentText>To change your email, just enter new email and your current password</DialogContentText>
@@ -70,7 +70,7 @@ const EmailDialog = (props: { open: boolean; setOpen: any }) => {
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={() => props.setOpen("")}>Cancel</Button>
+        <Button onClick={() => setOpen("")}>Cancel</Button>
         <Button onClick={handleSubmit}>Change</Button>
       </DialogActions>
       <CustomSnackBar openPopUp={openPopUp} resMessage={resMessage} setter={closePopUp} severity={severity} />

@@ -14,7 +14,7 @@ const CustomSnackBar = (props: {
       anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
       style={{ bottom: 70 }}
       open={props.openPopUp}
-      autoHideDuration={100000}
+      autoHideDuration={5000}
       onClose={() => props.setter()}
     >
       <Alert onClose={() => props.setter()} severity={props.severity}>
