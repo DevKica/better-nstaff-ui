@@ -12,14 +12,16 @@ import { useState, useEffect } from "react";
 import { getAllMonthlyRates } from "../../api/nstaff/monthlyRatesApi";
 import { singleMonthlyRate } from "../../types/nstaff";
 import Button from "@mui/material/Button";
-import { Link } from "react-router-dom";
 import { Add as AddIcon } from "@material-ui/icons";
 import AddMonhtlyRateDialog from "../../components/nstaff/AddMonthlyRateDialog";
+import EditMonthlyRateDialog from "./../../components/nstaff/EditMonthlyRate";
 
 const MainActive = () => {
   const [monthlyRates, setMonthlyRates] = useState<singleMonthlyRate[] | []>([]);
   const [loaded, setLoaded] = useState<boolean>(false);
   const [open, setOpen] = useState<boolean>(false);
+  const [openEdit, setOpenEdit] = useState(false);
+  const [editId, setEditId] = useState("");
 
   useEffect(() => {
     let unmounted = false;
@@ -35,12 +37,17 @@ const MainActive = () => {
       unmounted = true;
     };
   }, []);
+
+  const edited = [...monthlyRates.filter(e => e._id === editId)][0];
+
   return (
     <AnimatedPage>
       {loaded && (
         <Container maxWidth="sm">
           <Grid container sx={{ mb: 3 }} direction="column" alignItems="center" justifyContent="center">
             <AddMonhtlyRateDialog open={open} setOpen={setOpen} />
+            {edited && <EditMonthlyRateDialog monthlyRate={edited} open={openEdit} setOpen={setOpenEdit} />}
+
             <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
               <DateRangeIcon />
             </Avatar>
@@ -64,14 +71,20 @@ const MainActive = () => {
               )}
               {monthlyRates.length ? (
                 monthlyRates.map(e => (
-                  <SingleMonthlyRate workDays={e.workDays} key={e._id} month={e.month} rate={e.rate} />
+                  <SingleMonthlyRate
+                    setEditId={setEditId}
+                    setOpenEdit={setOpenEdit}
+                    workDays={e.workDays}
+                    key={e._id}
+                    id={e._id}
+                    month={e.month}
+                    rate={e.rate}
+                  />
                 ))
               ) : (
-                <Link to="/">
-                  <Button variant="outlined" sx={{ p: 2 }}>
-                    Add your first month
-                  </Button>
-                </Link>
+                <Button variant="outlined" sx={{ p: 2 }} onClick={() => setOpen(true)}>
+                  Add your first month
+                </Button>
               )}
             </Box>
           </Grid>

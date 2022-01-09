@@ -11,7 +11,21 @@ import { useEffect } from "react";
 import { calculateDayEarnings, roundTo2Decimals } from "./../../helpers/nstaff";
 import { hourDiff } from "./../../helpers/hourDiff";
 
-const SingleMonthlyRate = ({ month, rate, workDays }: { month: string; rate: number; workDays: workDayType[] }) => {
+const SingleMonthlyRate = ({
+  month,
+  rate,
+  workDays,
+  setEditId,
+  setOpenEdit,
+  id,
+}: {
+  month: string;
+  rate: number;
+  workDays: workDayType[];
+  setEditId: any;
+  setOpenEdit: any;
+  id: string;
+}) => {
   const [allEarnings, setAllEarnings] = useState(0);
   const [allHours, setAllHours] = useState(0);
   const [allTipInCash, setAllTipInCash] = useState(0);
@@ -44,17 +58,27 @@ const SingleMonthlyRate = ({ month, rate, workDays }: { month: string; rate: num
         <Typography variant="h5" component="div"></Typography>
         <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
           <Typography>All earnings: {allEarnings}zł</Typography>
-          <Typography>Tip in cash: {allTipInCash}zł</Typography>
-          <Typography>Hours: {allHours}h</Typography>
+          <Typography>All tip in cash: {allTipInCash}zł</Typography>
+          <Typography>All Hours: {allHours}h</Typography>
         </Box>
       </CardContent>
-      <Link to={`/active/monthDetails/${month}`}>
-        <CardActions sx={{ textAlign: "center" }}>
-          <Button variant="outlined" style={{ margin: "auto" }}>
+      <CardActions sx={{ textAlign: "center", display: "flex", justifyContent: "center" }}>
+        <Link to={`/active/monthDetails/${month}`}>
+          <Button variant="outlined" sx={{ mx: 1 }}>
             go to details
           </Button>
-        </CardActions>
-      </Link>
+        </Link>
+        <Button
+          variant="outlined"
+          sx={{ mx: 1 }}
+          onClick={() => {
+            setOpenEdit(true);
+            setEditId(id);
+          }}
+        >
+          edit
+        </Button>
+      </CardActions>
     </Card>
   );
 };

@@ -8,5 +8,5 @@ export const getAllMonthlyRates = () => nStaffMonthlyRatesAccessInstance.get(`/g
 
 export const createMonthlyRate = (body: monthlyRateBody) => nStaffMonthlyRatesAccessInstance.post(`/create`, body);
 
-export const updateMonthlyRates = (body: rateBody, monthlyRateId: string) =>
+export const updateMonthlyRate = (body: rateBody, monthlyRateId: string) =>
   nStaffMonthlyRatesAccessInstance.patch(`/update/${monthlyRateId}`, body);
