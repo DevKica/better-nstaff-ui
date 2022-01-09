@@ -5,6 +5,9 @@ const Footer = () => {
     <Box
       component="footer"
       sx={{
+        position: "fixed",
+        bottom: 0,
+        width: "100%",
         textAlign: "center",
         color: "white",
         fontSize: "14px",

@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { workDayType } from "./../../types/nstaff";
 import { useState } from "react";
 import { useEffect } from "react";
-import { calculateDayEarnings } from "./../../helpers/nstaff";
+import { calculateDayEarnings, roundTo2Decimals } from "./../../helpers/nstaff";
 import { hourDiff } from "./../../helpers/hourDiff";
 
 const SingleMonthlyRate = ({ month, rate, workDays }: { month: string; rate: number; workDays: workDayType[] }) => {
@@ -27,9 +27,9 @@ const SingleMonthlyRate = ({ month, rate, workDays }: { month: string; rate: num
     });
 
     if (!unmounted) {
-      setAllEarnings(Math.round(allE * 100) / 100);
-      setAllHours(Math.round(allH * 100) / 100);
-      setAllTipInCash(Math.round(allTIC * 100) / 100);
+      setAllEarnings(roundTo2Decimals(allE));
+      setAllHours(roundTo2Decimals(allH));
+      setAllTipInCash(roundTo2Decimals(allTIC));
     }
     return () => {
       unmounted = true;
