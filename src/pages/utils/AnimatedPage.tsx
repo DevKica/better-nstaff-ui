@@ -1,15 +1,15 @@
-import { motion } from "framer-motion";
+// import { motion } from "framer-motion";
 
-const animations = {
-  initial: { opacity: 0 },
-  in: { opacity: 1 },
-  out: { opacity: 0 },
-};
+// const animations = {
+//   initial: { opacity: 0 },
+//   in: { opacity: 1 },
+//   out: { opacity: 0 },
+// };
 
-const pageTransition = {
-  ease: "anticipate",
-  duration: 0.35,
-};
+// const pageTransition = {
+//   ease: "anticipate",
+//   duration: 0.35,
+// };
 
 const AnimatedPage = ({ children }: { children: any }) => {
   return (
