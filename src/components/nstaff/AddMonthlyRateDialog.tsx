@@ -21,7 +21,6 @@ const AddMonhtlyRateDialog = ({ open, setOpen }: { open: boolean; setOpen: any }
   const closePopUp = () => {
     if (severity === "success") {
       setOpen(false);
-      window.location.reload();
     }
     setOpenPopUp(false);
   };
@@ -31,6 +30,7 @@ const AddMonhtlyRateDialog = ({ open, setOpen }: { open: boolean; setOpen: any }
     if (!res) return;
     if (res.data.status === 200) {
       setSeverity("success");
+      window.location.reload();
     } else {
       setSeverity("error");
     }
@@ -59,7 +59,7 @@ const AddMonhtlyRateDialog = ({ open, setOpen }: { open: boolean; setOpen: any }
       </DialogContent>
       <DialogActions>
         <Button onClick={() => setOpen(false)}>Cancel</Button>
-        <Button onClick={handleSubmit}>Change</Button>
+        <Button onClick={handleSubmit}>Add</Button>
       </DialogActions>
       <CustomSnackBar openPopUp={openPopUp} resMessage={resMessage} setter={closePopUp} severity={severity} />
     </Dialog>

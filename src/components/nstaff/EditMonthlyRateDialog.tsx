@@ -41,7 +41,6 @@ const EditWorkDayDialog = ({
   const closePopUp = () => {
     if (severity === "success") {
       setOpen(false);
-      window.location.reload();
     }
     setOpenPopUp(false);
   };
@@ -52,6 +51,7 @@ const EditWorkDayDialog = ({
 
     if (res.data.status === 200) {
       setSeverity("success");
+      window.location.reload();
     } else {
       setSeverity("error");
     }

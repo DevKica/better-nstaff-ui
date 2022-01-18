@@ -78,7 +78,9 @@ const SingleMonthPage = () => {
         setAllTipCard(roundTo2Decimals(allTCC));
         setAllReceipts(roundTo2Decimals(allR));
       }
-      setLoaded(true);
+      if (!unmounted) {
+        setLoaded(true);
+      }
     })();
     return () => {
       unmounted = true;

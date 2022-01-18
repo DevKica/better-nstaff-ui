@@ -1,4 +1,4 @@
-export const APP_URL = "http://localhost:4000/app";
+export const APP_URL = process.env.REACT_APP_SERVER_URL;
 
 export const USER_URL = `${APP_URL}/user`;
 

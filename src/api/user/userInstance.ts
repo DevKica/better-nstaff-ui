@@ -10,22 +10,24 @@ export const helperErrorMessge = (resMsg: string, msg: string) => {
 };
 
 export const checkBasicErrors = (resMsg: string) => {
-  basicErrorRoutes.forEach(e => {
-    if (helperErrorMessge(resMsg, e.text)) {
-      window.location.href = `/errors${e.path}`;
+  for (let i = 0; i < basicErrorRoutes.length; i++) {
+    const n = basicErrorRoutes[i];
+    if (helperErrorMessge(resMsg, n.text)) {
+      window.location.href = `/errors${n.path}`;
       return null;
     }
-  });
+  }
   return true;
 };
 
 export const checkForbiddenError = (resMsg: string) => {
-  accessRoutes.forEach(e => {
-    if (helperErrorMessge(resMsg, e.text)) {
-      window.location.href = `/errors${e.path}`;
+  for (let i = 0; i < accessRoutes.length; i++) {
+    const n = accessRoutes[i];
+    if (helperErrorMessge(resMsg, n.text)) {
+      window.location.href = `/errors${n.path}`;
       return null;
     }
-  });
+  }
   return true;
 };
 

@@ -7,7 +7,7 @@ const EasterEgg = () => {
       <div>
         <div>{`<3`}</div>
         <CardMedia
-          image={require("../../static/easterEgg/easterEgg.png")}
+          image={require("../../static/easterEgg.png")}
           style={{
             position: "absolute",
             top: "50%",

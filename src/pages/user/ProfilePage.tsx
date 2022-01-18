@@ -45,7 +45,7 @@ const ProfilePage = () => {
               <Typography component="h1" variant="h4" sx={{ my: 2 }}>
                 {privateUser.surname} {privateUser.name}
               </Typography>
-              <Typography variant="h6" gutterBottom>
+              <Typography variant="subtitle2" gutterBottom>
                 email: {privateUser.email}{" "}
                 {!isActive && (
                   <Typography component="div" variant="subtitle1" gutterBottom>
@@ -53,10 +53,10 @@ const ProfilePage = () => {
                   </Typography>
                 )}
               </Typography>
-              <Typography variant="h6" gutterBottom>
+              <Typography variant="subtitle2" gutterBottom>
                 updated at: {privateUser.updatedAt.replace("T", " ").slice(0, 19)}
               </Typography>
-              <Typography variant="h6" gutterBottom>
+              <Typography variant="subtitle2" gutterBottom>
                 created at: {privateUser.createdAt.replace("T", " ").slice(0, 19)}
               </Typography>
             </CardContent>

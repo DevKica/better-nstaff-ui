@@ -1,12 +1,10 @@
 import Dialog from "@mui/material/Dialog";
 import { useState } from "react";
 import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import CustomSnackBar from "../../globals/CustomSnackBar";
-import { useForm } from "../../../hooks/useForm";
 import { AlertColor } from "@mui/material";
 import { changeUserProfilePhoto } from "../../../api/user/profileApi";
 import { setUserData } from "../../../redux/actions/authActions";

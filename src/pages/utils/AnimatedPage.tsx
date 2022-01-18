@@ -8,14 +8,16 @@ const animations = {
 
 const pageTransition = {
   ease: "anticipate",
-  duration: 0.5,
+  duration: 0.35,
 };
 
 const AnimatedPage = ({ children }: { children: any }) => {
   return (
-    <motion.div initial="initial" animate="in" exit="out" variants={animations} transition={pageTransition}>
+    <div>
+      {/* <motion.div initial="initial" animate="in" exit="out" variants={animations} transition={pageTransition}> */}
       {children}
-    </motion.div>
+      {/* </motion.div> */}
+    </div>
   );
 };
 

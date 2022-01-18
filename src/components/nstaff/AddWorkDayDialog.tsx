@@ -31,7 +31,6 @@ const AddWorkDayDialog = ({ open, setOpen, month }: { open: boolean; setOpen: an
   const closePopUp = () => {
     if (severity === "success") {
       setOpen(false);
-      window.location.reload();
     }
     setOpenPopUp(false);
   };
@@ -42,6 +41,7 @@ const AddWorkDayDialog = ({ open, setOpen, month }: { open: boolean; setOpen: an
 
     if (res.data.status === 200) {
       setSeverity("success");
+      window.location.reload();
     } else {
       setSeverity("error");
     }

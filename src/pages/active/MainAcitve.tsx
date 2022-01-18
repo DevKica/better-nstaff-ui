@@ -47,7 +47,6 @@ const MainActive = () => {
           <Grid container sx={{ mb: 3 }} direction="column" alignItems="center" justifyContent="center">
             <AddMonhtlyRateDialog open={open} setOpen={setOpen} />
             {edited && <EditMonthlyRateDialog monthlyRate={edited} open={openEdit} setOpen={setOpenEdit} />}
-
             <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
               <DateRangeIcon />
             </Avatar>

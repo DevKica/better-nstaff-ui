@@ -15,7 +15,6 @@ const SetNewPasswordPage = () => {
   const [resMessage, setResMessage] = useState<string[] | []>([]);
   const [severity, setSeverity] = useState<AlertColor | undefined>("error");
   const [open, setOpen] = useState<boolean>(false);
-
   const [body, changeBody] = useForm({ password: "password2", repeatPassword: "password2" });
   useEffect(() => {
     (async () => {
