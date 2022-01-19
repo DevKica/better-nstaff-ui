@@ -24,11 +24,11 @@ import EditWorkDayDialog from "../../components/nstaff/EditMonthlyRateDialog";
 const SingleMonthPage = () => {
   const { month } = useParams();
   const [rate, setRate] = useState(0);
-  const [allEarnings, setAllEarnings] = useState(0);
-  const [allHours, setAllHours] = useState(0);
-  const [allTipCash, setAllTipCash] = useState(0);
-  const [allTipCard, setAllTipCard] = useState(0);
-  const [allReceipts, setAllReceipts] = useState(0);
+  const [TotalEarnings, setTotalEarnings] = useState(0);
+  const [TotalHours, setTotalHours] = useState(0);
+  const [TotalTipCash, setTotalTipCash] = useState(0);
+  const [TotalTipCard, setTotalTipCard] = useState(0);
+  const [TotalReceipts, setTotalReceipts] = useState(0);
   const [days, setDays] = useState<workDayType[]>([]);
   const [open, setOpen] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
@@ -55,28 +55,28 @@ const SingleMonthPage = () => {
         setDays(res.data.message);
       }
 
-      let allE = 0;
-      let allH = 0;
-      let allTIC = 0;
-      let allTCC = 0;
-      let allR = 0;
+      let TotalE = 0;
+      let TotalH = 0;
+      let TotalTIC = 0;
+      let TotalTCC = 0;
+      let TotalR = 0;
 
       if (!unmounted) {
         res.data.message.forEach((e: workDayType) => {
-          allE += calculateDayEarnings(e, rate);
-          allH += hourDiff(e.startOfWork, e.endOfWork);
-          allTIC += e.tipCash;
-          allTCC += e.tipCard;
-          allR += e.receipts;
+          TotalE += calculateDayEarnings(e, rate);
+          TotalH += hourDiff(e.startOfWork, e.endOfWork);
+          TotalTIC += e.tipCash;
+          TotalTCC += e.tipCard;
+          TotalR += e.receipts;
         });
       }
 
       if (!unmounted) {
-        setAllEarnings(roundTo2Decimals(allE));
-        setAllHours(roundTo2Decimals(allH));
-        setAllTipCash(roundTo2Decimals(allTIC));
-        setAllTipCard(roundTo2Decimals(allTCC));
-        setAllReceipts(roundTo2Decimals(allR));
+        setTotalEarnings(roundTo2Decimals(TotalE));
+        setTotalHours(roundTo2Decimals(TotalH));
+        setTotalTipCash(roundTo2Decimals(TotalTIC));
+        setTotalTipCard(roundTo2Decimals(TotalTCC));
+        setTotalReceipts(roundTo2Decimals(TotalR));
       }
       if (!unmounted) {
         setLoaded(true);
@@ -117,16 +117,17 @@ const SingleMonthPage = () => {
                   Month: {month}
                 </Typography>
                 <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", fontSize: "20px" }}>
-                  <Typography>All earnings: {allEarnings}zł</Typography>
-                  <Typography>All tip in cash: {allTipCash}zł</Typography>
-                  <Typography>Salary: {roundTo2Decimals(allEarnings - allTipCash)}zł</Typography>
+                  <Typography>Total earnings: {TotalEarnings}zł</Typography>
+                  <Typography>Total tip in cash: {TotalTipCash}zł</Typography>
+                  <Typography>Salary: {roundTo2Decimals(TotalEarnings - TotalTipCash)}zł</Typography>
                   <Typography>
-                    All tip on card: {roundTo2Decimals(allTipCard * cardTipTax)}zł ( before tax: {allTipCard}zł)
+                    Total tip on card: {roundTo2Decimals(TotalTipCard * cardTipTax)}zł ( before tax: {TotalTipCard}zł)
                   </Typography>
                   <Typography>
-                    All receipts: {allReceipts}zł ( tax to kitchen: {roundTo2Decimals(taxToKitchen * allReceipts)}zł)
+                    Total receipts: {TotalReceipts}zł ( tax to kitchen: {roundTo2Decimals(taxToKitchen * TotalReceipts)}
+                    zł)
                   </Typography>
-                  <Typography>All hours: {allHours}h</Typography>
+                  <Typography>Total hours: {TotalHours}h</Typography>
                   <Typography>Rate: {rate}zł/h</Typography>
                 </Box>
               </CardContent>

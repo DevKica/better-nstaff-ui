@@ -26,24 +26,24 @@ const SingleMonthlyRate = ({
   setOpenEdit: any;
   id: string;
 }) => {
-  const [allEarnings, setAllEarnings] = useState(0);
-  const [allHours, setAllHours] = useState(0);
-  const [allTipInCash, setAllTipInCash] = useState(0);
+  const [TotalEarnings, setTotalEarnings] = useState(0);
+  const [TotalHours, setTotalHours] = useState(0);
+  const [TotalTipInCash, setTotalTipInCash] = useState(0);
   useEffect(() => {
     let unmounted = false;
-    let allE = 0;
-    let allH = 0;
-    let allTIC = 0;
+    let TotalE = 0;
+    let TotalH = 0;
+    let TotalTIC = 0;
     workDays.forEach(e => {
-      allE += calculateDayEarnings(e, rate);
-      allH += hourDiff(e.startOfWork, e.endOfWork);
-      allTIC += e.tipCash;
+      TotalE += calculateDayEarnings(e, rate);
+      TotalH += hourDiff(e.startOfWork, e.endOfWork);
+      TotalTIC += e.tipCash;
     });
 
     if (!unmounted) {
-      setAllEarnings(roundTo2Decimals(allE));
-      setAllHours(roundTo2Decimals(allH));
-      setAllTipInCash(roundTo2Decimals(allTIC));
+      setTotalEarnings(roundTo2Decimals(TotalE));
+      setTotalHours(roundTo2Decimals(TotalH));
+      setTotalTipInCash(roundTo2Decimals(TotalTIC));
     }
     return () => {
       unmounted = true;
@@ -57,9 +57,9 @@ const SingleMonthlyRate = ({
         </Typography>
         <Typography variant="h5" component="div"></Typography>
         <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-          <Typography>All earnings: {allEarnings}zł</Typography>
-          <Typography>All tip in cash: {allTipInCash}zł</Typography>
-          <Typography>All Hours: {allHours}h</Typography>
+          <Typography>Total earnings: {TotalEarnings}zł</Typography>
+          <Typography>Total tip in cash: {TotalTipInCash}zł</Typography>
+          <Typography>Total Hours: {TotalHours}h</Typography>
         </Box>
       </CardContent>
       <CardActions sx={{ textAlign: "center", display: "flex", justifyContent: "center" }}>
