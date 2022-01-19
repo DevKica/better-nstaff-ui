@@ -91,10 +91,9 @@ const SingleMonthPage = () => {
 
   const handleDelete = async (id: string) => {
     const res = await deleteWorkDay(id);
-    if (!res) {
-      setDays(prev => prev.filter(e => e._id !== id));
-    }
-    return;
+    if (!res) return;
+
+    setDays(prev => prev.filter(e => e._id !== id));
   };
 
   return (
