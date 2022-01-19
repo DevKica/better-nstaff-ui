@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import AnimatedPage from "./../utils/AnimatedPage";
-// import GoogleAndFooter from "../../components/public/GoogleAndFooter";
+import GoogleAndFooter from "../../components/public/GoogleAndFooter";
 import { Snackbar } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 import ResMessage from "../../components/globals/ResMessage";
@@ -78,7 +78,7 @@ export default function LoginPage() {
               Sign in
             </Button>
           </Box>
-          {/* <GoogleAndFooter signIn={true} /> */}
+          <GoogleAndFooter signIn={true} />
           <Snackbar
             style={{ bottom: 70 }}
             open={!!resMessage.length}
