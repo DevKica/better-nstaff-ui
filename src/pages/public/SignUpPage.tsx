@@ -8,7 +8,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import AnimatedPage from "../utils/AnimatedPage";
-import GoogleAndFooter from "./../../components/public/GoogleAndFooter";
+// import GoogleAndFooter from "./../../components/public/GoogleAndFooter";
 import { useForm } from "../../hooks/useForm";
 import { useState } from "react";
 import { useNavigate } from "react-router";
@@ -116,7 +116,7 @@ export default function SignUpPage() {
               Sign up
             </Button>
           </Box>
-          <GoogleAndFooter signIn={false} />
+          {/* <GoogleAndFooter signIn={false} /> */}
 
           <Snackbar open={!!resMessage.length} autoHideDuration={100000} onClose={() => setResMessage([])}>
             <Alert onClose={() => setResMessage([])} severity="error">
