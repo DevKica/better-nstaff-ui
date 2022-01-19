@@ -28,14 +28,7 @@ const EmailConfirmationPage = () => {
     <AnimatedPage>
       <div>
         {loaded && (
-          <Grid
-            container
-            spacing={0}
-            direction="column"
-            alignItems="center"
-            justifyContent="center"
-            style={{ position: "absolute", top: "50%", transform: "translateY(-50%)" }}
-          >
+          <Grid container spacing={0} direction="column" alignItems="center" justifyContent="center">
             {resMsg.length ? (
               <ResMessage messages={resMsg} />
             ) : (
