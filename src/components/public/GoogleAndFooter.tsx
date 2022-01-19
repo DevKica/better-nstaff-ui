@@ -44,7 +44,7 @@ const GoogleAndFooter = (props: { signIn: boolean }) => {
     setResMessage(res.data.message);
   };
   const onGoogleFailure = () => {
-    setResMessage(["Someting went wrong with google, try again later"]);
+    // setResMessage(["Someting went wrong with google, try again later"]);
   };
   const handleGoogleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
