@@ -22,11 +22,11 @@ export default function SignUpPage() {
   const navigate = useNavigate();
   const [resMessage, setResMessage] = useState<string[] | []>([]);
   const [body, handleChange] = useForm({
-    name: "example",
-    surname: "example",
-    email: "devKica777@gmail.com",
-    password: "password1",
-    repeatPassword: "password1",
+    name: "",
+    surname: "",
+    email: "",
+    password: "",
+    repeatPassword: "",
   });
 
   const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {

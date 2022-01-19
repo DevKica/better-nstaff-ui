@@ -21,7 +21,7 @@ import { setUserData } from "../../redux/actions/authActions";
 export default function LoginPage() {
   const navigate = useNavigate();
   const [resMessage, setResMessage] = useState<string[] | []>([]);
-  const [body, changeBody] = useForm({ email: "devKi1ca777@gmail.com", password: "pas1sword1" });
+  const [body, changeBody] = useForm({ email: "", password: "" });
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

@@ -37,14 +37,12 @@ const EditWorkDayDialog = ({
     tipCard: workDayToEdit.tipCard,
     receipts: workDayToEdit.receipts,
   });
-  console.log(workDayToEdit);
   const closePopUp = () => {
     if (severity === "success") {
       setOpen(false);
     }
     setOpenPopUp(false);
   };
-
   const handleSubmit = async () => {
     const res = await updateWorkDay(body, workDayToEdit._id);
     if (!res) return;
