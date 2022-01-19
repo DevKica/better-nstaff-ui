@@ -1,4 +1,4 @@
-export const APP_URL = process.env.REACT_APP_SERVER_URL;
+export const APP_URL = "https://nstaff.herokuapp.com/app";
 
 export const USER_URL = `${APP_URL}/user`;
 
