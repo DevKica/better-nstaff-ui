@@ -10,6 +10,7 @@
 //   ease: "anticipate",
 //   duration: 0.35,
 // };
+// test if readme will update
 
 const AnimatedPage = ({ children }: { children: any }) => {
   return (
