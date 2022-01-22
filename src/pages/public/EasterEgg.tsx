@@ -5,7 +5,6 @@ const EasterEgg = () => {
   return (
     <AnimatedPage>
       <div>
-        <div>{`<3`}</div>
         <CardMedia
           image={require("../../static/easterEgg.png")}
           style={{

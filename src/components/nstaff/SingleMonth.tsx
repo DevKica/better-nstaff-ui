@@ -59,7 +59,7 @@ const SingleMonthlyRate = ({
         <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
           <Typography>Total earnings: {TotalEarnings}zł</Typography>
           <Typography>Total tip in cash: {TotalTipInCash}zł</Typography>
-          <Typography>Total Hours: {TotalHours}h</Typography>
+          <Typography>Total hours: {TotalHours}h</Typography>
         </Box>
       </CardContent>
       <CardActions sx={{ textAlign: "center", display: "flex", justifyContent: "center" }}>

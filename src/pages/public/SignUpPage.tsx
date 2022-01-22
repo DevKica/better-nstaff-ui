@@ -63,7 +63,6 @@ export default function SignUpPage() {
               label="Email Address"
               name="email"
               autoComplete="email"
-              autoFocus
               value={body.email}
               onChange={handleChange}
             />

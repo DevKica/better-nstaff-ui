@@ -57,7 +57,6 @@ export default function LoginPage() {
               label="Email Address"
               name="email"
               autoComplete="email"
-              autoFocus
               value={body.email}
               onChange={changeBody}
             />

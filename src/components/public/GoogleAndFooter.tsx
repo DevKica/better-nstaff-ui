@@ -1,9 +1,10 @@
+import AnimatedPage from "../../pages/utils/AnimatedPage";
 import { Grid, Typography } from "@material-ui/core";
+import { Link as RouterLink } from "react-router-dom";
 // import ResMessage from "../globals/ResMessage";
 // import { useState } from "react";
 // import GoogleLogin from "react-google-login";
 // import { GOOGLE_CLIENT_ID } from "../../config/default";
-import { Link as RouterLink } from "react-router-dom";
 // import { Alert } from "@material-ui/lab";
 // import { useForm } from "../../hooks/useForm";
 // import { googleLogin, googleRegister } from "../../api/user/authApi";
@@ -11,12 +12,9 @@ import { Link as RouterLink } from "react-router-dom";
 // import { setUserData } from "../../redux/actions/authActions";
 // import { useNavigate } from "react-router";
 // import Button from "@mui/material/Button";
-import AnimatedPage from "../../pages/utils/AnimatedPage";
 
-const GoogleAndFooter = (props: { signIn: boolean }) => {
+const GoogleAndFooter = ({ signIn }: { signIn: boolean }) => {
   // const navigate = useNavigate();
-
-  const { signIn } = props;
   // const googleRef = useRef<HTMLDivElement>(null);
 
   // const [googleOpen, setGoogleOpen] = useState<boolean>(false);
@@ -108,7 +106,7 @@ const GoogleAndFooter = (props: { signIn: boolean }) => {
         <RouterLink to={signIn ? "/public/signUp" : "/public/login"}>
           <Grid item xs={12}>
             <Typography style={{ color: "#1976d2" }}>
-              {signIn ? "Dont't have an account? Sign Up" : "  Already have an account? Sign in"}
+              {signIn ? "Dont't have an account? Sign up" : "  Already have an account? Sign in"}
             </Typography>
           </Grid>
         </RouterLink>
