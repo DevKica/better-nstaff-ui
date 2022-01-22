@@ -14,7 +14,7 @@ const Footer = () => {
         bgcolor: "primary.main",
         p: 1,
       }}
-      style={{ opacity: "1 !important", zIndex: 100000 }}
+      style={{ opacity: "1 !important", zIndex: 1399 }}
     >
       Created by Paweł Kica 2022
     </Box>

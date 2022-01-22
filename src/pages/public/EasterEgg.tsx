@@ -1,11 +1,12 @@
-import { CardMedia } from "@material-ui/core";
+// import { CardMedia } from "@material-ui/core";
 import AnimatedPage from "../utils/AnimatedPage";
 
 const EasterEgg = () => {
   return (
     <AnimatedPage>
       <div>
-        <CardMedia
+        love u all
+        {/* <CardMedia
           image={require("../../static/easterEgg.png")}
           style={{
             position: "absolute",
@@ -17,7 +18,7 @@ const EasterEgg = () => {
             backgroundSize: "auto",
             backgroundRepeat: "none",
           }}
-        />
+        /> */}
       </div>
     </AnimatedPage>
   );
