@@ -2,7 +2,8 @@
 
 to the moon 🚀🚀
 
-### 🎞️ Hosted on heroku and netlify. PWA available. [See the deployed version here. ](https://nstaff.netlify.app/)
+### 🎞️ Hosted on heroku, netlify and mongoDB cloud. PWA available. [See the deployed version here.](https://nstaff.netlify.app/) 
+#### There may be a delay of 5-10 seconds as the website goes into sleep mode after a certain period of inactivity and requires a restart - these are the charms of free hosting
 
 ### ✨ Tech stack :
 
@@ -13,6 +14,13 @@ to the moon 🚀🚀
   - Express.js
   - MongoDb with Mongoose
 - ofc all in typescript 💖
+
+### 📖 A few words about the application logic:
+
+- Authorization based on http cookies
+- Sending e-mails via nodemailer
+- Data validation by Joi (on server)
+- To see server repository [click here](https://github.com/DevKica/nstaff-server)
 
 <br/>
 
@@ -30,19 +38,13 @@ to the moon 🚀🚀
 
 ![signUpAndSignIn](https://user-images.githubusercontent.com/89777457/150654323-3327d86e-0131-4073-9cef-4e154c9e5309.png)
 
-<br/>
-
 - #### 🏦 Password recovery mechanism
 
 <br/>
 
 ![resetPasswor1d](https://user-images.githubusercontent.com/89777457/150654691-59797d78-fe66-43ce-9391-b3da3a0a8236.png)
 
-<br/>
-
 ### 🚕 Authenticated user routes
-
-<br/>
 
 - #### 📧 Confirm email main page
 
@@ -50,15 +52,11 @@ to the moon 🚀🚀
 
 ![confirmEmail](https://user-images.githubusercontent.com/89777457/150658226-00d6095d-b869-4847-942d-3ac884d0c336.png)
 
-<br/>
-
 - #### 🏪 User settings
 
 <br/>
 
 ![settings](https://user-images.githubusercontent.com/89777457/150658175-2014516b-51ce-4bab-8a96-450d315e424f.png)
-
-<br/>
 
 - #### 🎭 User profile
 
@@ -66,26 +64,14 @@ to the moon 🚀🚀
 
 ![profile](https://user-images.githubusercontent.com/89777457/150658227-4bc87df3-543b-41a3-af3c-3d3aa4f372ef.png)
 
-<br/>
-
 ### 🚓 Active user routes
-
-<br/>
 
 - #### 📅 Create month
 
-<br/>
-
 ![createMonth](https://user-images.githubusercontent.com/89777457/150658224-1f2c2892-ba09-4500-b2a1-86c37aed50f3.png)
-
-<br/>
 
 - #### 🍻 Create day
 
-<br/>
-
 ![workday](https://user-images.githubusercontent.com/89777457/150658609-c26a2ef7-12a7-47cf-90bb-658df1bfd46e.png)
-
-<br/>
 
 still to the moon 🚀🚀
