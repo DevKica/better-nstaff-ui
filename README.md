@@ -2,7 +2,8 @@
 
 to the moon 🚀🚀
 
-### 🎞️ Hosted on heroku, netlify and mongoDB cloud. PWA available. [See the deployed version here. ](https://nstaff.netlify.app/)
+### 🎞️ Hosted on heroku, netlify and mongoDB cloud. PWA available. [See the deployed version here.](https://nstaff.netlify.app/) 
+#### There may be a delay of 5-10 seconds as the website goes into sleep mode after a certain period of inactivity and requires a restart - these are the charms of free hosting
 
 ### ✨ Tech stack :
 
