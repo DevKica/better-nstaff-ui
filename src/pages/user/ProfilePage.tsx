@@ -43,7 +43,7 @@ const ProfilePage = () => {
               />
               <Button onClick={() => setEdit(true)}>Change profile photo</Button>
               <Typography component="h1" variant="h4" sx={{ my: 2 }}>
-                {privateUser.surname} {privateUser.name}
+                {privateUser.name} {privateUser.surname}
               </Typography>
               <Typography variant="subtitle2" gutterBottom>
                 email: {privateUser.email}{" "}
