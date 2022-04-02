@@ -1,4 +1,4 @@
-## 📱 Nstaff - app for calculating remuneration for employees of the restaurant where I worked
+## 📱 Nstaff - app to calculate remunerations for employees of the restaurant where I worked
 
 to the moon 🚀🚀
 
