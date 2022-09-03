@@ -2,8 +2,8 @@
 
 to the moon 🚀🚀
 
-### 🎞️ Hosted on heroku, netlify and mongoDB cloud. PWA available. [See the deployed version here.](https://nstaff.netlify.app/) 
-#### There may be a delay of 5-10 seconds as the website goes into sleep mode after a certain period of inactivity and requires a restart - these are the charms of free hosting
+### 🎞️ It [WAS](https://www.youtube.com/watch?v=ciF7WZXmpjU&list=UUsBjURrPoezykLs9EqgamOA_) hosted on heroku, netlify and mongoDB cloud. PWA available. <!-- [See the deployed version here.](https://nstaff.netlify.app/) -->
+#### There may be a delay of 5-10 seconds as the website goes into sleep mode after a certain period of inactivity and requires a restart - these are the charms of [~~free~~](https://www.youtube.com/watch?v=ciF7WZXmpjU&list=UUsBjURrPoezykLs9EqgamOA_) hosting
 
 All email functions (password reset etc.) are currently disabled due to poor performance of nodemailer on free hosting.
 
